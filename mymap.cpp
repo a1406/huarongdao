@@ -3,6 +3,7 @@
 
 void mymap::init_map(int player[PLAYER_NUM])
 {
+	vector<int> t;
 	for (int i = 0; i < PLAYER_NUM; ++i)
 	{
 		int type = player[i] / 100;
@@ -29,9 +30,10 @@ void mymap::init_map(int player[PLAYER_NUM])
 		}
 		m_player[i]->pos_x = x;
 		m_player[i]->pos_y = y;
+		t.push_back(player[i]);
 	}
-	m_vec.push_back(player);
-	m_map[player] = 0;
+	m_vec.push_back(t);
+	m_map[t] = 0;
 }
 
 

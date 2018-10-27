@@ -24,8 +24,8 @@ public:
 	int map_block[MAP_W][MAP_H];
 	base *m_player[PLAYER_NUM];
 
-	vector<int[PLAYER_NUM]> m_vec;
-	map<int[PLAYER_NUM], int> m_map;
+	vector<vector<int> > m_vec;
+	map<vector<int>, int> m_map;
 };
 
 #endif /* MAP_H */

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "map.hpp"
+#include "mymap.hpp"
 
 int main(int argc, char *argv[])
 {
