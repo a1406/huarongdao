@@ -4,7 +4,6 @@
 class base
 {
 public:
-	base();
 	int type;  //1: 曹操4格子  2:关羽横格子  3:张飞竖格子  4: 小兵一格子  0:空格
 	int pos_x;
 	int pos_y;
