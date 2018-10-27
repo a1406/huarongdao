@@ -36,7 +36,7 @@ void mymap::init_map(int player[PLAYER_NUM])
 	}
 	refresh_block();
 	m_vec.push_back(t);
-	m_map[t] = 0;
+	m_map.insert(t);
 }
 
 void mymap::push_step()
@@ -117,10 +117,13 @@ bool mymap::run()
 			}
 			if (m_map.find(t) != m_map.end())
 				continue;
+			if (m_failed.find(t) != m_failed.end())
+				continue;
+			
 			refresh_block();
 			m_vec.push_back(t);
-			int n = m_map.size();
-			m_map[t] = n;
+//			int n = m_map.size();
+			m_map.insert(t);
 
 			if (is_win())
 				return true;

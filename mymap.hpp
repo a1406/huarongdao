@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <map>
+#include <set>
 #include "caocao.hpp"
 #include "xiaobing.hpp"
 #include "guanyu.hpp"
@@ -30,7 +31,8 @@ public:
 
 //	vector<int>  m_result;      //三位数字,第一个表示方向,,第二个表示x, 第三个表示y
 	vector<vector<int> > m_vec;
-	map<vector<int>, int> m_map;
+	set<vector<int> > m_map;
+	set<vector<int> > m_failed;	
 
 private:
 	void push_step();
