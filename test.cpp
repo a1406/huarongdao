@@ -14,10 +14,21 @@ int main(int argc, char *argv[])
 	{
 		bool ret = m.run();
 		printf("m run, ret = %s\n", ret ? "true" : "false");
+		if (ret)
+		{
+			printf("result len = %lu\n", m.m_vec.size());
+		}
+
+		ret = m2.run();
+		printf("m2 run, ret = %s\n", ret ? "true" : "false");
+		if (ret)
+		{
+			printf("result len = %lu\n", m2.m_vec.size());
+		}
 	}
 		//	m2.run();
 
-	m.print_result();
-	//	m2.print_result();
+//	m.print_result();
+	m2.print_result();
 	return 0;
 }

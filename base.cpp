@@ -1,6 +1,10 @@
 #include <assert.h>
 #include "base.hpp"
 
+base::~base()
+{
+}
+
 void base::do_move(int dir)
 {
 	switch (dir)

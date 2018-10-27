@@ -38,7 +38,10 @@ private:
 	bool run_step();  //返回true表示有路走, false表示没路走
 	void refresh_block();
 	void set_block(int x, int y);
-	bool is_win();	
+	bool is_win();
+	void reset_player();	
+
+	void print_block();	
 };
 
 #endif /* MAP_H */

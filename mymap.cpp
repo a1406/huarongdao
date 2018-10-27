@@ -2,6 +2,46 @@
 #include <string.h>
 #include "mymap.hpp"
 
+void mymap::reset_player()
+{
+	vector<int> t;
+	t = m_vec.back();
+	
+	for (int i = 0; i < PLAYER_NUM; ++i)
+	{
+		int type = t[i] / 100;
+		int x = t[i] % 100 / 10;
+		int y = t[i] % 10;
+		assert(x < MAP_W);
+		assert(y < MAP_H);
+
+		assert(type == m_player[i]->type);
+		
+		// delete m_player[i];
+		// switch (type)
+		// {
+		// 	case 1:
+		// 		m_player[i] = new caocao();
+		// 		break;
+		// 	case 2:
+		// 		m_player[i] = new guanyu();				
+		// 		break;
+		// 	case 3:
+		// 		m_player[i] = new zhangfei();								
+		// 		break;
+		// 	case 4:
+		// 		m_player[i] = new xiaobing();												
+		// 		break;
+		// 	default:
+		// 		assert(0);
+		// }
+		// m_player[i]->type = type;		
+		m_player[i]->pos_x = x;
+		m_player[i]->pos_y = y;
+	}
+	refresh_block();
+}
+
 void mymap::init_map(int player[PLAYER_NUM])
 {
 	vector<int> t;
@@ -139,15 +179,23 @@ bool mymap::run()
 		if (ret == false)
 		{
 //			return false;
-			assert(m_vec.size() == m_map.size());
+//			print_result();
+//			printf("=================end=================\n\n\n");
 			
-			if (m_vec.empty())
+			assert(m_vec.size() == m_map.size());
+
+			int left = m_vec.size();
+			
+//			if (m_vec.empty())
+			if (left <= 1)
 				return false;
 			vector<int> t;
 			t = m_vec.back();
 			m_vec.pop_back();
 			m_failed.insert(t);
 			m_map.erase(t);
+
+			reset_player();
 		}
 		else
 		{
@@ -158,6 +206,18 @@ bool mymap::run()
 	assert(0);
 }
 
+void mymap::print_block()
+{
+	for (int i = MAP_H - 1; i >= 0; --i)
+	{
+		for (int j = 0; j < MAP_W; ++j)
+		{
+			int bk = map_block[j][i];
+			printf("%d ", bk);
+		}
+		printf("\n");
+	}
+}
 
 void mymap::print_result()
 {
@@ -170,6 +230,17 @@ void mymap::print_result()
 		"张",
 		"飞",
 		"兵",
+
+		"0 ",
+		"1 ",
+		"2 ",
+		"3 ",
+		"4 ",
+		"5 ",
+		"6 ",
+		"7 ",
+		"8 ",
+		"9 ",				
 	};
 	
 	int i = 0;
@@ -179,8 +250,10 @@ void mymap::print_result()
 		vector<int> t1 = *ite;
 		int        result[MAP_W][MAP_H] = {0};
 
+		int j = 0;
 		for (vector<int>::iterator ite2 = t1.begin(); ite2 != t1.end(); ++ite2)
 		{
+			++j;
 			int t2 = *ite2;
 			int type = t2 / 100;
 			int x	 = t2 % 100 / 10;
@@ -198,6 +271,10 @@ void mymap::print_result()
 					result[x+1][y+1] = 2;
 					assert(x + 1 < MAP_W);
 					assert(y + 1 < MAP_H);
+
+					// result[x+1][y] = j + 7;
+					// result[x][y+1] = j + 7;
+					// result[x+1][y+1] = j + 7;
 				}
 				break;
 				case 2:
@@ -205,6 +282,8 @@ void mymap::print_result()
 					result[x][y]   = 3;
 					result[x+1][y] = 4;
 					assert(x + 1 < MAP_W);
+
+//					result[x+1][y] = j + 7;					
 				}
 				break;
 				case 3:
@@ -212,11 +291,15 @@ void mymap::print_result()
 					result[x][y]   = 6;
 					result[x][y+1] = 5;
 					assert(y + 1 < MAP_H);
+
+//					result[x][y+1] = j + 7;					
 				}
 				break;
 				case 4:
 				{
 					result[x][y] = 7;
+
+//					result[x][y] = j + 7;					
 				}
 				break;
 				default:
@@ -228,11 +311,12 @@ void mymap::print_result()
 			for (int j = 0; j < MAP_W; ++j)
 			{
 				int id = result[j][i];
-				assert(id < 8 && id >= 0);
+//				assert(id < 8 && id >= 0);
 				printf("%s ", char_map[id]);
 			}
 			printf("\n");
 		}
 		printf("=================step %d=================\n", i);
 	}
+
 }
