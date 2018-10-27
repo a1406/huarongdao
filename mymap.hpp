@@ -28,7 +28,7 @@ public:
 	int map_block[MAP_W][MAP_H];
 	base *m_player[PLAYER_NUM];
 
-	vector<int>  m_result;      //三位数字,第一个表示方向,,第二个表示x, 第三个表示y
+//	vector<int>  m_result;      //三位数字,第一个表示方向,,第二个表示x, 第三个表示y
 	vector<vector<int> > m_vec;
 	map<vector<int>, int> m_map;
 };

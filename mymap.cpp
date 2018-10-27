@@ -38,10 +38,85 @@ void mymap::init_map(int player[PLAYER_NUM])
 
 bool mymap::run()
 {
+	
 	return false;
 }
 
 
 void mymap::print_result()
 {
+	static const char *char_map[] = {
+		"  ",
+		"曹",
+		"操",
+		"关",
+		"羽",
+		"张",
+		"飞",
+		"兵",
+	};
+	
+	int i = 0;
+	for (vector<vector<int> >::iterator ite = m_vec.begin(); ite != m_vec.end(); ++ite)
+	{
+		++i;
+		vector<int> t1 = *ite;
+		int        result[MAP_W][MAP_H] = {0};
+
+		for (vector<int>::iterator ite2 = t1.begin(); ite2 != t1.end(); ++ite2)
+		{
+			int t2 = *ite2;
+			int type = t2 / 100;
+			int x	 = t2 % 100 / 10;
+			int y	 = t2 % 10;
+			assert(x < MAP_W);
+			assert(y < MAP_H);			
+			
+			switch (type)
+			{
+				case 1:
+				{
+					result[x][y] = 1;
+					result[x+1][y] = 2;
+					result[x][y+1] = 1;
+					result[x+1][y+1] = 2;
+					assert(x + 1 < MAP_W);
+					assert(y + 1 < MAP_H);
+				}
+				break;
+				case 2:
+				{
+					result[x][y]   = 3;
+					result[x+1][y] = 4;
+					assert(x + 1 < MAP_W);
+				}
+				break;
+				case 3:
+				{
+					result[x][y]   = 6;
+					result[x][y+1] = 5;
+					assert(y + 1 < MAP_H);
+				}
+				break;
+				case 4:
+				{
+					result[x][y] = 7;
+				}
+				break;
+				default:
+					assert(0);
+			}
+		}
+		for (int i = MAP_H - 1; i >= 0; --i)
+		{
+			for (int j = 0; j < MAP_W; ++j)
+			{
+				int id = result[j][i];
+				assert(id < 8 && id >= 0);
+				printf("%s ", char_map[id]);
+			}
+			printf("\n");
+		}
+		printf("=================step %d=================\n", i);
+	}
 }
