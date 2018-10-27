@@ -1,7 +1,7 @@
 #include <assert.h>
-#include "map.hpp"
+#include "mymap.hpp"
 
-void map::init_map(int player[PLAYER_NUM])
+void mymap::init_map(int player[PLAYER_NUM])
 {
 	for (int i = 0; i < PLAYER_NUM; ++i)
 	{
@@ -30,6 +30,8 @@ void map::init_map(int player[PLAYER_NUM])
 		m_player[i]->pos_x = x;
 		m_player[i]->pos_y = y;
 	}
+	m_vec.push_back(player);
+	m_map[player] = 0;
 }
 
 
