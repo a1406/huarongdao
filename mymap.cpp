@@ -36,9 +36,34 @@ void mymap::init_map(int player[PLAYER_NUM])
 	m_map[t] = 0;
 }
 
+void mymap::push_step()
+{
+	for (int i = 0; i < PLAYER_NUM; ++i)
+	{
+		
+	}
+}
+
 bool mymap::run()
 {
-	
+	for (int i = 0; i < PLAYER_NUM; ++i)
+	{
+		for (int j = 1; j <= 4; ++j)
+		{
+			if (!m_player[i]->try_move(j, this))
+				continue;
+			vector<int> t;
+			for (int ii = 0; ii < PLAYER_NUM; ++ii)
+			{
+				t.push_back(m_player[i]->get_num());
+			}
+			if (m_map.find(t) != m_map.end())
+				continue;
+			m_vec.push_back(t);
+			int n = m_map.size();
+			m_map[t] = n;
+		}
+	}
 	return false;
 }
 

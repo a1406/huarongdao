@@ -5,9 +5,9 @@
 class guanyu: public base
 {
 public:
-	virtual bool can_move(int dir);
+	virtual bool try_move(int dir, mymap *m);
 	virtual bool at_pos(int x, int y);
-	
+	virtual int  get_num();	
 };
 
 #endif /* CAOCAO_H */
