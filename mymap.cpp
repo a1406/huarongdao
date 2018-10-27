@@ -129,6 +129,7 @@ bool mymap::run()
 		bool ret = run_step();
 		if (ret == false)
 		{
+			return false;
 			assert(m_vec.size() == m_map.size());
 			
 			if (m_vec.empty())

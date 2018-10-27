@@ -11,24 +11,28 @@ bool xiaobing::try_move(int dir, mymap *m)
 				return false;
 			if (m->map_block[pos_x][pos_y + 1])
 				return false;
+			pos_y += 1;						
 			break;
 		case 2:
 			if (pos_y == 0)
 				return false;
 			if (m->map_block[pos_x][pos_y - 1])
 				return false;
+			pos_y -= 1;						
 			break;
 		case 3:
 			if (pos_x == 0)
 				return false;
 			if (m->map_block[pos_x - 1][pos_y])
 				return false;
+			pos_x -= 1;						
 			break;
 		case 4:
 			if (pos_x + 1 >= MAP_W)
 				return false;
 			if (m->map_block[pos_x + 1][pos_y])
 				return false;
+			pos_x += 1;						
 			break;
 		default:
 			assert(0);

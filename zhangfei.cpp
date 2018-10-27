@@ -11,12 +11,14 @@ bool zhangfei::try_move(int dir, mymap *m)
 				return false;
 			if (m->map_block[pos_x][pos_y + 2])
 				return false;
+			pos_y += 1;			
 			break;
 		case 2:
 			if (pos_y == 0)
 				return false;
 			if (m->map_block[pos_x][pos_y - 1])
 				return false;
+			pos_y -= 1;			
 			break;
 		case 3:
 			if (pos_x == 0)
@@ -25,6 +27,7 @@ bool zhangfei::try_move(int dir, mymap *m)
 				return false;
 			if (m->map_block[pos_x - 1][pos_y + 1])
 				return false;
+			pos_x -= 1;			
 			break;
 		case 4:
 			if (pos_x + 1 >= MAP_W)
@@ -33,6 +36,7 @@ bool zhangfei::try_move(int dir, mymap *m)
 				return false;
 			if (m->map_block[pos_x + 1][pos_y + 1])
 				return false;
+			pos_x += 1;			
 			break;
 		default:
 			assert(0);
