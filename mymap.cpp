@@ -129,7 +129,11 @@ bool mymap::run()
 		bool ret = run_step();
 		if (ret == false)
 		{
-			vector<int> t;			
+			assert(m_vec.size() == m_map.size());
+			
+			if (m_vec.empty())
+				return false;
+			vector<int> t;
 			t = m_vec.back();
 			m_vec.pop_back();
 			m_failed.insert(t);
@@ -141,6 +145,7 @@ bool mymap::run()
 				return true;
 		}
 	}
+	assert(0);
 }
 
 
