@@ -1,8 +1,8 @@
 all: test
 
-test: caocao.cpp map.cpp test.cpp
-	gcc -g -O0 -o test caocao.cpp map.cpp test.cpp
+test: caocao.cpp map.cpp test.cpp zhangfei.cpp guanyu.cpp
+	g++ -g -O0 -o $@ $^
 
 clean:
-	rm -f test
+	rm -f test *~
 

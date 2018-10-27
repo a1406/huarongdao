@@ -1,10 +1,10 @@
 #include "caocao.hpp"
 
-bool can_move(int dir)
+bool caocao::can_move(int dir)
 {
 	return false;
 }
-bool at_pos(int x, int y)
+bool caocao::at_pos(int x, int y)
 {
 	return false;
 }
