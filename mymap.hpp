@@ -21,6 +21,10 @@ class mymap
 {
 public:
 	void init_map(int player[PLAYER_NUM]);  //三位数字,第一个表示类型,第二个表示x, 第三个表示y
+	bool run();
+
+	void print_result();
+	
 	int map_block[MAP_W][MAP_H];
 	base *m_player[PLAYER_NUM];
 

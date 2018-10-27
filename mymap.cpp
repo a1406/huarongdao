@@ -36,4 +36,12 @@ void mymap::init_map(int player[PLAYER_NUM])
 	m_map[t] = 0;
 }
 
+bool mymap::run()
+{
+	return false;
+}
 
+
+void mymap::print_result()
+{
+}
