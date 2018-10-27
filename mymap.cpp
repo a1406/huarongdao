@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <string.h>
 #include "mymap.hpp"
 
 void mymap::init_map(int player[PLAYER_NUM])
@@ -28,10 +29,12 @@ void mymap::init_map(int player[PLAYER_NUM])
 			default:
 				assert(0);
 		}
+		m_player[i]->type = type;		
 		m_player[i]->pos_x = x;
 		m_player[i]->pos_y = y;
 		t.push_back(player[i]);
 	}
+	refresh_block();
 	m_vec.push_back(t);
 	m_map[t] = 0;
 }
@@ -41,6 +44,43 @@ void mymap::push_step()
 	for (int i = 0; i < PLAYER_NUM; ++i)
 	{
 		
+	}
+}
+
+void mymap::set_block(int x, int y)
+{
+	assert(x < MAP_W);
+	assert(y < MAP_H);
+	assert(map_block[x][y] == 0);	
+	map_block[x][y] = 1;
+}
+
+void mymap::refresh_block()
+{
+	memset(&map_block, 0, sizeof(map_block));
+	for (int i = 0; i < PLAYER_NUM; ++i)
+	{
+		int x = m_player[i]->pos_x;
+		int y = m_player[i]->pos_y;
+		set_block(x, y);
+		switch (m_player[i]->type)
+		{
+			case 1:
+				set_block(x + 1, y);
+				set_block(x, y + 1);
+				set_block(x + 1, y + 1);		
+				break;
+			case 2:
+				set_block(x + 1, y);
+				break;
+			case 3:
+				set_block(x, y + 1);
+				break;
+			case 4:
+				break;
+			default:
+				assert(0);
+		}
 	}
 }
 
@@ -59,6 +99,7 @@ bool mymap::run()
 			}
 			if (m_map.find(t) != m_map.end())
 				continue;
+			refresh_block();
 			m_vec.push_back(t);
 			int n = m_map.size();
 			m_map[t] = n;

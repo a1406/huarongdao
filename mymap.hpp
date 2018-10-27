@@ -33,7 +33,9 @@ public:
 	map<vector<int>, int> m_map;
 
 private:
-	void push_step();	
+	void push_step();
+	void refresh_block();
+	void set_block(int x, int y);	
 };
 
 #endif /* MAP_H */
