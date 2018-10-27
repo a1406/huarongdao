@@ -102,17 +102,24 @@ bool mymap::run_step()
 		{
 			if (!m_player[i]->try_move(j, this))
 				continue;
+			m_player[i]->do_move(j);			
 			vector<int> t;
 			for (int ii = 0; ii < PLAYER_NUM; ++ii)
 			{
 				t.push_back(m_player[ii]->get_num());
 			}
 			if (m_map.find(t) != m_map.end())
+			{
+				m_player[i]->rollback_move(j);
 				continue;
+			}
 			if (m_failed.find(t) != m_failed.end())
+			{
+				m_player[i]->rollback_move(j);				
 				continue;
+			}
 
-			m_player[i]->do_move(j);
+
 			
 			refresh_block();
 			m_vec.push_back(t);
@@ -131,7 +138,7 @@ bool mymap::run()
 		bool ret = run_step();
 		if (ret == false)
 		{
-			return false;
+//			return false;
 			assert(m_vec.size() == m_map.size());
 			
 			if (m_vec.empty())
