@@ -39,14 +39,6 @@ void mymap::init_map(int player[PLAYER_NUM])
 	m_map.insert(t);
 }
 
-void mymap::push_step()
-{
-	for (int i = 0; i < PLAYER_NUM; ++i)
-	{
-		
-	}
-}
-
 void mymap::set_block(int x, int y)
 {
 	assert(x < MAP_W);
@@ -102,7 +94,7 @@ bool mymap::is_win()
 	assert(0);
 }
 
-bool mymap::run()
+bool mymap::run_step()
 {
 	for (int i = 0; i < PLAYER_NUM; ++i)
 	{
@@ -124,12 +116,26 @@ bool mymap::run()
 			m_vec.push_back(t);
 //			int n = m_map.size();
 			m_map.insert(t);
+			return true;
+		}
+	}
+	return false;
+}
 
+bool mymap::run()
+{
+	for (;;)
+	{
+		bool ret = run_step();
+		if (ret == false)
+		{
+		}
+		else
+		{
 			if (is_win())
 				return true;
 		}
 	}
-	return false;
 }
 
 
