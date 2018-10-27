@@ -129,6 +129,11 @@ bool mymap::run()
 		bool ret = run_step();
 		if (ret == false)
 		{
+			vector<int> t;			
+			t = m_vec.back();
+			m_vec.pop_back();
+			m_failed.insert(t);
+			m_map.erase(t);
 		}
 		else
 		{
