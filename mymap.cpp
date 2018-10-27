@@ -105,12 +105,14 @@ bool mymap::run_step()
 			vector<int> t;
 			for (int ii = 0; ii < PLAYER_NUM; ++ii)
 			{
-				t.push_back(m_player[i]->get_num());
+				t.push_back(m_player[ii]->get_num());
 			}
 			if (m_map.find(t) != m_map.end())
 				continue;
 			if (m_failed.find(t) != m_failed.end())
 				continue;
+
+			m_player[i]->do_move(j);
 			
 			refresh_block();
 			m_vec.push_back(t);
