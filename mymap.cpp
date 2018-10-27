@@ -84,6 +84,24 @@ void mymap::refresh_block()
 	}
 }
 
+bool mymap::is_win()
+{
+	for (int i = 0; i < PLAYER_NUM; ++i)
+	{
+		if (m_player[i]->type != 1)
+			continue;
+		if (m_player[i]->pos_x == 1 && m_player[i]->pos_y == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	assert(0);
+}
+
 bool mymap::run()
 {
 	for (int i = 0; i < PLAYER_NUM; ++i)
@@ -103,6 +121,9 @@ bool mymap::run()
 			m_vec.push_back(t);
 			int n = m_map.size();
 			m_map[t] = n;
+
+			if (is_win())
+				return true;
 		}
 	}
 	return false;

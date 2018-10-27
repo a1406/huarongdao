@@ -35,7 +35,8 @@ public:
 private:
 	void push_step();
 	void refresh_block();
-	void set_block(int x, int y);	
+	void set_block(int x, int y);
+	bool is_win();	
 };
 
 #endif /* MAP_H */
