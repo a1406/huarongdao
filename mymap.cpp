@@ -171,6 +171,18 @@ bool mymap::run_step()
 	return false;
 }
 
+void mymap::add_to_win_map()
+{
+	assert(win_map.empty());
+	win_vec = m_vec;
+	int i = 0;
+	for (vector<vector<int> >::iterator ite = win_vec.begin(); ite != win_vec.end(); ++ite)
+	{
+		vector<int> t = *ite;
+		win_map[t] = ++i;
+	}
+}
+
 bool mymap::run()
 {
 	for (;;)
@@ -200,7 +212,10 @@ bool mymap::run()
 		else
 		{
 			if (is_win())
+			{
+				add_to_win_map();
 				return true;
+			}
 		}
 	}
 	assert(0);

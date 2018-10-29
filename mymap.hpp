@@ -32,7 +32,10 @@ public:
 //	vector<int>  m_result;      //三位数字,第一个表示方向,,第二个表示x, 第三个表示y
 	vector<vector<int> > m_vec;
 	set<vector<int> > m_map;
-	set<vector<int> > m_failed;	
+	set<vector<int> > m_failed;
+
+	vector<vector<int> > win_vec;
+	map<vector<int>, int> win_map;	
 
 private:
 	bool run_step();  //返回true表示有路走, false表示没路走
@@ -40,7 +43,7 @@ private:
 	void set_block(int x, int y);
 	bool is_win();
 	void reset_player();	
-
+	void add_to_win_map();
 	void print_block();	
 };
 
